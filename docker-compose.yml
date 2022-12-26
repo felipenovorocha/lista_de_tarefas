@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  poc-todolist-fastapi:
+    image: poc-todolist-fastapi
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    depends_on:
+      - data_source
+    command: uvicorn --host 0.0.0.0 --port 8000 main:app --reload
+
+
+
+  data_source:
+    image: mongo:latest
+    expose: 
+      - 27017
+    environment:
+      - AUTH=no
+
+
+
+  
