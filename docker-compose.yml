@@ -7,22 +7,28 @@ services:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - 8000:8000
+      - "8000:8000"
     volumes:
       - .:/app
     depends_on:
       - data_source
     command: uvicorn --host 0.0.0.0 --port 8000 main:app --reload
+    networks:
+      - mongo-compose-network
 
 
 
   data_source:
     image: mongo:latest
     expose: 
-      - 27017
+      - "27017:27017"
     environment:
       - AUTH=no
+    networks:
+      - mongo-compose-network 
 
-
+networks: 
+  mongo-compose-network:
+    driver: bridge
 
   

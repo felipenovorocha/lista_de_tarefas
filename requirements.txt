@@ -3,3 +3,5 @@ pydantic==1.10.2
 gunicorn
 uvicorn
 watchfiles
+python-dotenv
+motor
