@@ -16,12 +16,10 @@ services:
     networks:
       - mongo-compose-network
 
-
-
   data_source:
     image: mongo:latest
     expose: 
-      - "27017:27017"
+      - 27017
     environment:
       - AUTH=no
     networks:
